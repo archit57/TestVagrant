@@ -1,4 +1,4 @@
-import com.sun.javafx.PlatformUtil;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -36,16 +36,18 @@ public class SignInTest {
     }
 
     private void setDriverPath() {
-        if (PlatformUtil.isMac()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver");
-        }
-        if (PlatformUtil.isWindows()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        }
-        if (PlatformUtil.isLinux()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver_linux");
-        }
-    }
-
-
+//      if (PlatformUtil.isMac()) {
+//          System.setProperty("webdriver.chrome.driver", "chromedriver");
+//      }
+//      if (PlatformUtil.isWindows()) {
+          System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+//      }
+//      if (PlatformUtil.isLinux()) {
+//          System.setProperty("webdriver.chrome.driver", "chromedriver_linux");
+//      }
+//  
+          }
 }
+
+
+
