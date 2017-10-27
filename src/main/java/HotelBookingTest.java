@@ -1,17 +1,25 @@
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
-public class HotelBookingTest {
+public class HotelBookingTest extends BusinessLogic{
 
-    WebDriver driver = new ChromeDriver();
+    WebDriver driver = null;
 
-    @FindBy(linkText = "Hotels")
-    private WebElement hotelLink;
+//    @FindBy(linkText = "Hotels")
+//    private WebElement hotelLink;
+   
+    @FindBy(how=How.LINK_TEXT, using="Hotels")
+	private WebElement hotelLink;
+	
 
     @FindBy(id = "Tags")
     private WebElement localityTextBox;
@@ -25,9 +33,15 @@ public class HotelBookingTest {
     @Test
     public void shouldBeAbleToSearchForHotels() {
         setDriverPath();
-
+        driver = new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--start-maximized");
+        driver = new ChromeDriver(chromeOptions);
         driver.get("https://www.cleartrip.com/");
-        hotelLink.click();
+        waitFor(2000);
+        PageFactory.initElements(driver, this);
+       hotelLink.click();
+        
 
         localityTextBox.sendKeys("Indiranagar, Bangalore");
 
@@ -38,18 +52,6 @@ public class HotelBookingTest {
 
     }
 
-    private void setDriverPath() {
-//      if (PlatformUtil.isMac()) {
-//          System.setProperty("webdriver.chrome.driver", "chromedriver");
-//      }
-//      if (PlatformUtil.isWindows()) {
-          System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-//      }
-//      if (PlatformUtil.isLinux()) {
-//          System.setProperty("webdriver.chrome.driver", "chromedriver_linux");
-//      }
-//  
-          }
+    
+
 }
-
-
